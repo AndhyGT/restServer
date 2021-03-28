@@ -60,7 +60,6 @@ const usuariosPatch = (req, res) => {
 const usuariosDelete = async (req, res = response) => {
 
     const { id } = req.params;
-
     const usuario = await Usuario.findByIdAndUpdate(id, { estado: false });
 
     res.json(usuario);
