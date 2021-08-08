@@ -1,8 +1,9 @@
 const bcryptjs = require('bcryptjs');
 
+
 const Role = require('../models/role');
 const Usuario = require('../models/usuario');
-
+const Categoria = require('../models/categoria');
 
 const esRoleValido = async (rol = '') => {
     const existeRol = await Role.findOne({ rol });
@@ -34,6 +35,13 @@ const existeUsuarioPorId = async (id) => {
     }
 }
 
+const existeCategoria = async (id) => {
+    const existeCategoria = await Categoria.findById(id);
+    if (!existeCategoria) {
+        throw new Error(`El id categoria no existe ${id}`);
+    }
+}
+
 
 // await Usuario.findOne({ correo });
 // if (existeEmail) {
@@ -46,5 +54,6 @@ module.exports = {
     esRoleValido,
     emailExiste,
     incriptarPassword,
-    existeUsuarioPorId
+    existeUsuarioPorId,
+    existeCategoria
 }
