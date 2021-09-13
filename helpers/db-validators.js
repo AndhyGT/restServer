@@ -52,6 +52,18 @@ const existeProducto = async (id) => {
     }
 }
 
+/**
+ * Validar colecciones permitidas
+ */
+const coleccionesPermitidas = (coleccion = '', colecciones = []) => {
+
+    const incluida = colecciones.includes(coleccion);
+    if(!incluida){
+        throw new Error(`La coleccion ${coleccion} no es permitido, ${colecciones}`);
+    }
+
+    return true;
+}
 
 // await Usuario.findOne({ correo });
 // if (existeEmail) {
@@ -66,5 +78,6 @@ module.exports = {
     incriptarPassword,
     existeUsuarioPorId,
     existeCategoria,
-    existeProducto
+    existeProducto,
+    coleccionesPermitidas
 }
