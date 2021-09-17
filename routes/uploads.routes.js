@@ -5,7 +5,8 @@ const { validarCampos, validarArchivoSubir } = require('../middlewares');
 const { 
     cargarArchivo, 
     actualizarImagen, 
-    mostrarImagen } = require('../controllers/uploads.controllers');
+    mostrarImagen, 
+    actualizarImagenCludinary} = require('../controllers/uploads.controllers');
 const { coleccionesPermitidas } = require('../helpers');
 
 
@@ -20,7 +21,8 @@ router.put('/:coleccion/:id', [
     check('id', 'El id debe ser de mongo').isMongoId(),
     check('coleccion').custom( c => coleccionesPermitidas( c, ['usuarios', 'productos'])),
     validarCampos
-], actualizarImagen);
+], //actualizarImagen
+actualizarImagenCludinary);
 
 router.get('/:coleccion/:id', [
     check('id', 'El id debe ser de mongo').isMongoId(),
